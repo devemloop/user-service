@@ -50,7 +50,6 @@ workflows:
           filters:
             branches:
               ignore:
-                - develop
                 - main
       - test:
           requires:
