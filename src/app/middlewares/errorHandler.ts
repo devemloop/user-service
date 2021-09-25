@@ -11,10 +11,14 @@ const errorHandler = (
   if (error instanceof ServiceException) {
     const status = error.status || 500;
     const message = error.message || 'Algo deu errado...';
+    const category = error.category || 'INTERNAL_SERVER_ERROR';
+    const { messages } = error;
 
     return response.status(status).send({
       status,
+      category,
       message,
+      messages,
     });
   }
 
