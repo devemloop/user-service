@@ -65,8 +65,8 @@ const serverlessConfiguration: AWS = {
             method: 'post',
             path: 'create',
             cors: {
-              origin: '*'
-              maxAge: 86400
+              origin: '*',
+              maxAge: 86400,
             }
           },
         },
@@ -75,8 +75,8 @@ const serverlessConfiguration: AWS = {
             method: 'post',
             path: 'login',
             cors: {
-              origin: '*'
-              maxAge: 86400
+              origin: '*',
+              maxAge: 86400,
             }
           },
         },
@@ -85,8 +85,8 @@ const serverlessConfiguration: AWS = {
             method: 'get',
             path: 'me',
             cors: {
-              origin: '*'
-              maxAge: 86400
+              origin: '*',
+              maxAge: 86400,
             }
           },
         },
