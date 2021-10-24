@@ -64,18 +64,30 @@ const serverlessConfiguration: AWS = {
           http: {
             method: 'post',
             path: 'create',
+            cors: {
+              origin: '*'
+              maxAge: 86400
+            }
           },
         },
         {
           http: {
             method: 'post',
             path: 'login',
+            cors: {
+              origin: '*'
+              maxAge: 86400
+            }
           },
         },
         {
           http: {
             method: 'get',
             path: 'me',
+            cors: {
+              origin: '*'
+              maxAge: 86400
+            }
           },
         },
       ],
