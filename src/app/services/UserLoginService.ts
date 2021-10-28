@@ -33,7 +33,7 @@ class UserLoginService {
       }
     );
 
-    return { token };
+    return { access_token: token, tenant: tenant_id };
   }
 }
 
