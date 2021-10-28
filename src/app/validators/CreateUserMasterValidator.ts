@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import * as yup from 'yup';
 
+import ServiceException from '@error/ServiceException';
+
 const createTenantValidator = (
   req: Request,
   _: Response,
@@ -12,8 +14,17 @@ const createTenantValidator = (
     password: yup.string().required(),
   });
 
-  schema.validateSync(req.body);
-  next();
+  try {
+    schema.validateSync(req.body);
+    next();
+  } catch (err) {
+    throw new ServiceException({
+      message: 'Validation failed',
+      status: 400,
+      category: 'INPUT_VALIDATE_FAILURE',
+      messages: err.errors,
+    });
+  }
 };
 
 export default createTenantValidator;

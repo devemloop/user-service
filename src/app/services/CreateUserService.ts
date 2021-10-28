@@ -14,6 +14,7 @@ class CreateTenantService {
       throw new ServiceException({
         status: 400,
         message: 'User already exists',
+        category: 'USER_ALREADY_EXISTS',
       });
 
     return User.create({

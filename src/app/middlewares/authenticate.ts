@@ -16,7 +16,8 @@ const createTenantValidator = (
   if (!auth)
     throw new ServiceException({
       status: 403,
-      message: 'Authentication failed',
+      message: 'The token was not provided',
+      category: 'INVALID_TOKEN',
     });
 
   const [type, token] = auth.split(' ');
@@ -24,14 +25,21 @@ const createTenantValidator = (
   if (type !== 'Bearer')
     throw new ServiceException({
       status: 403,
-      message: 'Authentication failed',
+      message: 'Invalid token format',
+      category: 'INVALID_TOKEN',
     });
 
-  const tokenData = jwt.verify(token, USER_TOKEN_SECRET) as ITokenData;
-
-  req.tokenData = tokenData;
-
-  next();
+  try {
+    const tokenData = jwt.verify(token, USER_TOKEN_SECRET) as ITokenData;
+    req.tokenData = tokenData;
+    next();
+  } catch (_e) {
+    throw new ServiceException({
+      status: 403,
+      message: 'Authentication failed',
+      category: 'INVALID_TOKEN',
+    });
+  }
 };
 
 export default createTenantValidator;

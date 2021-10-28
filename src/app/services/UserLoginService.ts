@@ -17,9 +17,12 @@ class UserLoginService {
       throw new ServiceException({
         status: 403,
         message: 'Email and/or password is incorrect.',
+        category: 'EMAIL_OR_PASSWORD_INCORRECT',
       });
 
     const { user_id, tenant_id } = user;
+
+    const expiresIn = '7d';
 
     const token = jwt.sign(
       {
@@ -29,7 +32,7 @@ class UserLoginService {
       },
       USER_TOKEN_SECRET,
       {
-        expiresIn: '7d',
+        expiresIn,
       }
     );
 
