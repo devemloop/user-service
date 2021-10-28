@@ -36,7 +36,7 @@ class UserLoginService {
       }
     );
 
-    return { access_token: token, tenant: tenant_id };
+    return { tenant: tenant_id, access_token: token, expiresIn: '7d' };
   }
 }
 
