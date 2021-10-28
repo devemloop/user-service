@@ -36,7 +36,7 @@ class UserLoginService {
       }
     );
 
-    return { token, expiresIn };
+    return { access_token: token, tenant: tenant_id };
   }
 }
 
